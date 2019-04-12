@@ -19,7 +19,7 @@ int main()
     vector<int> a(16);
     int pyat[4][4];
 
-    for(i = 0; i < 16; i++){
+    /*for(i = 0; i < 16; i++){
         a[i] = i;
     }
     srand(unsigned(time(0)));
@@ -30,7 +30,14 @@ int main()
             pyat[i][j] = a[k];
             k++;
            }
+     }*/
+
+    for(i = 0, k = 0; i < 4; i++){
+        for( j = 0; j < 4; j++){
+            cin >> pyat[i][j];
+           }
      }
+
 bool f=false;
     for(i = 0; i < 4; i++){
         for(j = 0; j < 4; j++){
@@ -46,12 +53,12 @@ bool f=false;
         }
 
     }
-cout<<ik<<" "<<jk<<endl;
+
     while(1){
         print(pyat,4);
         for(i = 0, flag = 1, m = 1; i < 4; i++){
             for(j = 0; j < 4; j++){
-                if(pyat[i][j] % m != 0 || pyat[i][j] / m != 1){
+                if(m < 16 && pyat[i][j] != m){
 
                     flag = 0;
                     break;
@@ -61,25 +68,19 @@ cout<<ik<<" "<<jk<<endl;
         }
         if(flag){
             cout << endl << "You won";
-            //break;
+            break;
         }
+
         //key=getch();
         switch(getch())
         {
-        case 'a': if(jk != 0){ temp = pyat[ik][jk]; pyat[ik][jk] = pyat[ik][jk - 1]; pyat[ik][jk - 1] = temp; jk --; }
-        case 'w': if(ik != 0){ temp = pyat[ik][jk]; pyat[ik][jk] = pyat[ik - 1][jk]; pyat[ik - 1][jk] = temp; ik --; }
-        case 'd': if(jk != 3) { temp = pyat[ik][jk]; pyat[ik][jk] = pyat[ik][jk + 1]; pyat[ik][jk + 1] = temp; jk ++; }
-        case 's': if(ik != 3) { temp = pyat[ik][jk]; pyat[ik][jk] = pyat[ik + 1][jk]; pyat[ik + 1][jk] = temp; ik ++; }
+            case 'a' : if(jk != 0){ temp = pyat[ik][jk]; pyat[ik][jk] = pyat[ik][jk - 1]; pyat[ik][jk - 1] = temp; jk--; break;} else {break;}
+            case 'w' : if(ik != 0){ temp = pyat[ik][jk]; pyat[ik][jk] = pyat[ik - 1][jk]; pyat[ik - 1][jk] = temp; ik--; break;} else {break;}
+            case 'd' : if(jk != 3){ temp = pyat[ik][jk]; pyat[ik][jk] = pyat[ik][jk + 1]; pyat[ik][jk + 1] = temp; jk++; break;} else {break;}
+            case 's' : if(ik != 3){ temp = pyat[ik][jk]; pyat[ik][jk] = pyat[ik + 1][jk]; pyat[ik + 1][jk] = temp; ik++; break;} else {break;}
         }
 
         system("clear");
-
-
-
-
-
-
-
     }
 
 
@@ -94,7 +95,10 @@ void print(int (*a)[4],int N)
     {
         for(int j=0;j<4;j++)
         {
-            printf("%3d ",a[i][j]);
+            if(a[i][j] != 0)
+                printf("%3d ",a[i][j]);
+            else
+                printf("    ");
         }
         cout<<endl;
     }
